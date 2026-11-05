@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="IPL ticket booking demo website built with HTML, CSS and JavaScript.">
+  <title>IPL 2026 | Ticket Booking</title>
+  <style>
+    :root{--navy:#101a35;--blue:#1746a2;--orange:#ff8a00;--light:#f4f6fb;--text:#20283b}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:Arial,Helvetica,sans-serif;color:var(--text);background:#fff;line-height:1.6}
+    a{color:inherit;text-decoration:none}.container{width:min(1100px,92%);margin:auto}
+    header{background:var(--navy);color:#fff;position:sticky;top:0;z-index:10}
+    .nav{min-height:68px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+    .logo{font-size:1.35rem;font-weight:800;color:#fff}.logo span{color:var(--orange)}
+    nav{display:flex;gap:22px;flex-wrap:wrap}nav a{font-size:.95rem;color:#fff}nav a:hover{color:#ffb347}
+    .hero{color:#fff;text-align:center;padding:90px 16px;background:linear-gradient(120deg,rgba(12,24,55,.95),rgba(23,70,162,.82)),url('https://images.unsplash.com/photo-1531415074968-036ba1b575da?auto=format&fit=crop&w=1600&q=80') center/cover}
+    .hero h1{font-size:clamp(2rem,5vw,3.8rem);line-height:1.12;margin:0 0 16px}.hero p{max-width:650px;margin:0 auto 26px;color:#e9edfa}
+    .btn{display:inline-block;border:0;border-radius:7px;padding:12px 20px;background:var(--orange);color:#171717;font-weight:700;cursor:pointer}.btn.secondary{background:#fff;color:var(--blue);margin-left:8px}
+    section{padding:58px 0}.section-title{text-align:center;margin:0 0 10px;color:var(--navy);font-size:2rem}.section-intro{text-align:center;color:#657087;margin:0 auto 30px;max-width:680px}
+    .about{background:var(--light)}.team-grid,.venue-grid,.guideline-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:16px}
+    .team,.venue,.guide,.panel{background:#fff;padding:20px;border-radius:12px;box-shadow:0 5px 20px rgba(20,35,70,.07)}
+    .team{text-align:center;border-top:4px solid var(--orange)}.team h3,.venue h3{margin:5px 0;color:var(--navy)}.team p,.venue p{margin:0;color:#657087;font-size:.92rem}
+    .table-wrap{overflow-x:auto;background:#fff;border-radius:10px;box-shadow:0 5px 20px rgba(20,35,70,.07)}
+    table{width:100%;border-collapse:collapse;min-width:650px}th,td{text-align:left;padding:14px 16px;border-bottom:1px solid #e8ebf2}th{background:var(--navy);color:#fff}tr:last-child td{border-bottom:0}
+    .filter-row{display:flex;justify-content:flex-end;align-items:center;gap:10px;margin:0 0 14px;flex-wrap:wrap}select,input{font:inherit;padding:10px;border:1px solid #cbd2df;border-radius:7px;width:100%;background:#fff}
+    .filter-row select{width:auto;min-width:180px}.small-btn{padding:8px 13px;border:0;border-radius:6px;background:var(--blue);color:#fff;cursor:pointer}
+    .booking-area{background:var(--light)}.booking-layout{display:grid;grid-template-columns:1.3fr .7fr;gap:22px;align-items:start}
+    .panel h3{margin-top:0;color:var(--navy)}.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}.field label{display:block;font-weight:600;margin-bottom:6px;font-size:.92rem}.field.full{grid-column:1/-1}
+    .summary{background:var(--navy);color:#fff}.summary h3{color:#fff}.summary p{display:flex;justify-content:space-between;border-bottom:1px solid #ffffff30;padding:9px 0;margin:0}.summary strong{color:#ffc36b}
+    .guideline-grid{grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}.guide h3{margin:0 0 6px;color:var(--blue)}.guide p{margin:0;color:#657087}
+    footer{background:var(--navy);color:#dce3f5;text-align:center;padding:25px 12px}footer p{margin:4px}
+    .empty{text-align:center;color:#657087;padding:22px}
+    @media(max-width:720px){.nav{padding:14px 0;align-items:flex-start;flex-direction:column}nav{gap:12px}.booking-layout{grid-template-columns:1fr}.hero{padding:70px 15px}.form-grid{grid-template-columns:1fr}.field.full{grid-column:auto}.btn.secondary{margin:10px 0 0}}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <a class="logo" href="#home">IPL <span>2026</span></a>
+      <nav aria-label="Main navigation">
+        <a href="#matches">Matches</a><a href="#teams">Teams</a><a href="#booking">Book Ticket</a><a href="#my-bookings">My Bookings</a><a href="#guidelines">Guidelines</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="container">
+        <h1>Experience the Stadium Energy Live!</h1>
+        <p>Find a match, choose your stand and create your booking in this IPL ticket booking website demo.</p>
+        <a class="btn" href="#matches">View Schedule</a>
+        <a class="btn secondary" href="#booking">Book Ticket</a>
+      </div>
+    </section>
+
+    <section class="about" id="about">
+      <div class="container">
+        <h2 class="section-title">About IPL 2026</h2>
+        <p class="section-intro">The Indian Premier League brings together teams, players and cricket fans for exciting T20 action. Explore sample teams, venues and fixtures below.</p>
+        <div class="team-grid" id="teams">
+          <article class="team"><h3>CSK</h3><p>Chennai Super Kings</p></article>
+          <article class="team"><h3>MI</h3><p>Mumbai Indians</p></article>
+          <article class="team"><h3>RCB</h3><p>Royal Challengers Bengaluru</p></article>
+          <article class="team"><h3>KKR</h3><p>Kolkata Knight Riders</p></article>
+          <article class="team"><h3>RR</h3><p>Rajasthan Royals</p></article>
+          <article class="team"><h3>SRH</h3><p>Sunrisers Hyderabad</p></article>
+        </div>
+        <h2 class="section-title" style="margin-top:38px">Popular Venues</h2>
+        <div class="venue-grid">
+          <article class="venue"><h3>Chennai</h3><p>M. A. Chidambaram Stadium</p></article>
+          <article class="venue"><h3>Mumbai</h3><p>Wankhede Stadium</p></article>
+          <article class="venue"><h3>Bengaluru</h3><p>M. Chinnaswamy Stadium</p></article>
+          <article class="venue"><h3>Kolkata</h3><p>Eden Gardens</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="matches">
+      <div class="container">
+        <h2 class="section-title">Match Schedule</h2>
+        <p class="section-intro">Select a team to filter the sample fixtures. Dates, teams and prices below are illustrative data for this student project, not official match information.</p>
+        <div class="filter-row"><label for="teamFilter">Filter by team:</label>
+          <select id="teamFilter"><option value="all">All teams</option><option>CSK</option><option>MI</option><option>RCB</option><option>KKR</option><option>RR</option><option>SRH</option></select>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Match</th><th>Sample Date</th><th>Venue</th><th>From</th><th>Action</th></tr></thead>
+            <tbody id="matchRows">
+              <tr data-teams="CSK MI"><td>CSK vs MI</td><td>Sample Date 1 · 7:30 PM</td><td>Chennai</td><td>₹800</td><td><button class="small-btn book-match" data-match="CSK vs MI">Book</button></td></tr>
+              <tr data-teams="RCB KKR"><td>RCB vs KKR</td><td>Sample Date 2 · 7:30 PM</td><td>Bengaluru</td><td>₹900</td><td><button class="small-btn book-match" data-match="RCB vs KKR">Book</button></td></tr>
+              <tr data-teams="RR SRH"><td>RR vs SRH</td><td>Sample Date 3 · 3:30 PM</td><td>Jaipur</td><td>₹700</td><td><button class="small-btn book-match" data-match="RR vs SRH">Book</button></td></tr>
+              <tr data-teams="MI RCB"><td>MI vs RCB</td><td>Sample Date 4 · 7:30 PM</td><td>Mumbai</td><td>₹1,000</td><td><button class="small-btn book-match" data-match="MI vs RCB">Book</button></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section class="booking-area" id="booking">
+      <div class="container">
+        <h2 class="section-title">Book Your Ticket</h2>
+        <p class="section-intro">Fill in the form to create a sample booking. This demo does not process payments or issue real tickets.</p>
+        <div class="booking-layout">
+          <form class="panel" id="bookingForm">
+            <h3>Booking Details</h3>
+            <div class="form-grid">
+              <div class="field full"><label for="match">Select Match</label><select id="match" required><option value="">Choose a match</option><option>CSK vs MI</option><option>RCB vs KKR</option><option>RR vs SRH</option><option>MI vs RCB</option></select></div>
+              <div class="field"><label for="stand">Ticket Category</label><select id="stand"><option value="General">General</option><option value="Premium">Premium</option><option value="VIP">VIP</option></select></div>
+              <div class="field"><label for="quantity">Number of Tickets</label><input id="quantity" type="number" min="1" max="10" value="1" required></div>
+              <div class="field"><label for="customerName">Full Name</label><input id="customerName" type="text" placeholder="Enter your name" required></div>
+              <div class="field"><label for="email">Email Address</label><input id="email" type="email" placeholder="name@example.com" required></div>
+              <div class="field full"><label for="phone">Phone Number</label><input id="phone" type="tel" pattern="[0-9]{10}" maxlength="10" placeholder="10-digit mobile number" required></div>
+              <div class="field full"><button class="btn" type="submit">Confirm Demo Booking</button></div>
+            </div>
+          </form>
+          <aside class="panel summary" aria-live="polite">
+            <h3>Booking Summary</h3>
+            <p><span>Match</span><strong id="summaryMatch">Not selected</strong></p>
+            <p><span>Category</span><strong id="summaryStand">General</strong></p>
+            <p><span>Tickets</span><strong id="summaryQty">1</strong></p>
+            <p><span>Price per ticket</span><strong id="summaryPrice">₹800</strong></p>
+            <p><span>Total</span><strong id="summaryTotal">₹800</strong></p>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section id="my-bookings">
+      <div class="container">
+        <h2 class="section-title">My Bookings</h2>
+        <p class="section-intro">Bookings created during this browser session appear here. Refreshing the page clears this demo data.</p>
+        <div class="table-wrap">
+          <table><thead><tr><th>Booking ID</th><th>Name</th><th>Match</th><th>Category</th><th>Tickets</th><th>Total</th></tr></thead>
+            <tbody id="bookingRows"><tr id="emptyRow"><td colspan="6" class="empty">No bookings yet. Book a sample ticket to see it here.</td></tr></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section class="about" id="guidelines">
+      <div class="container">
+        <h2 class="section-title">Booking Guidelines</h2>
+        <p class="section-intro">A few reminders for a smooth stadium experience.</p>
+        <div class="guideline-grid">
+          <article class="guide"><h3>Book Early</h3><p>Choose your match and ticket category in advance.</p></article>
+          <article class="guide"><h3>Carry ID</h3><p>Keep a valid photo identity document available at the venue.</p></article>
+          <article class="guide"><h3>Arrive on Time</h3><p>Reach the stadium early and follow venue entry instructions.</p></article>
+          <article class="guide"><h3>Follow Rules</h3><p>Respect stadium security checks and prohibited-item rules.</p></article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer><p><strong>IPL 2026 Ticket Booking</strong> · Student Project</p><p>Built using HTML, CSS and JavaScript. Demo only — no real ticket sales.</p></footer>
+
+  <script>
+    const prices = { General: 800, Premium: 1500, VIP: 2500 };
+    const matchSelect = document.getElementById('match');
+    const standSelect = document.getElementById('stand');
+    const quantityInput = document.getElementById('quantity');
+    const teamFilter = document.getElementById('teamFilter');
+
+    function updateSummary() {
+      const category = standSelect.value;
+      const quantity = Math.max(1, Math.min(10, Number(quantityInput.value) || 1));
+      const price = prices[category];
+      document.getElementById('summaryMatch').textContent = matchSelect.value || 'Not selected';
+      document.getElementById('summaryStand').textContent = category;
+      document.getElementById('summaryQty').textContent = quantity;
+      document.getElementById('summaryPrice').textContent = '₹' + price.toLocaleString('en-IN');
+      document.getElementById('summaryTotal').textContent = '₹' + (price * quantity).toLocaleString('en-IN');
+    }
+    [matchSelect, standSelect, quantityInput].forEach(input => input.addEventListener('change', updateSummary));
+    quantityInput.addEventListener('input', updateSummary);
+
+    teamFilter.addEventListener('change', () => {
+      const selected = teamFilter.value;
+      document.querySelectorAll('#matchRows tr').forEach(row => {
+        row.hidden = selected !== 'all' && !row.dataset.teams.split(' ').includes(selected);
+      });
+    });
+
+    document.querySelectorAll('.book-match').forEach(button => {
+      button.addEventListener('click', () => {
+        matchSelect.value = button.dataset.match;
+        updateSummary();
+        document.getElementById('booking').scrollIntoView({ behavior: 'smooth' });
+      });
+    });
+
+    document.getElementById('bookingForm').addEventListener('submit', event => {
+      event.preventDefault();
+      const match = matchSelect.value;
+      const category = standSelect.value;
+      const quantity = Math.max(1, Math.min(10, Number(quantityInput.value) || 1));
+      const name = document.getElementById('customerName').value.trim();
+      const total = prices[category] * quantity;
+      const id = 'IPL' + Date.now().toString().slice(-6);
+      const emptyRow = document.getElementById('emptyRow');
+      if (emptyRow) emptyRow.remove();
+
+      const row = document.createElement('tr');
+      [id, name, match, category, quantity, '₹' + total.toLocaleString('en-IN')].forEach(value => {
+        const cell = document.createElement('td');
+        cell.textContent = value;
+        row.appendChild(cell);
+      });
+      document.getElementById('bookingRows').appendChild(row);
+      alert('Demo booking created successfully! Booking ID: ' + id);
+      event.target.reset();
+      updateSummary();
+    });
+    updateSummary();
+  </script>
+</body>
+</html>
